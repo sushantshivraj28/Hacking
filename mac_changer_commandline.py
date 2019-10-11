@@ -5,6 +5,9 @@ import re
 import optparse
 
 def get_arguments():
+    
+    """This function gets the interface and the mac address to be changed to"""
+    
     parser = optparse.OptionParser()
     parser.add_option("-i", "--interface", dest="interface", help="Interface to change the MAC Address of")
     parser.add_option("-m", "--mac", dest="new_mac", help="New MAC Address")
@@ -16,12 +19,18 @@ def get_arguments():
     return options
 
 def change_mac(interface, new_mac):
+    
+    """Function to change the mac address of the specified interface"""
+    
     print("Changing mac address for " + interface + " to " + new_mac)
     subprocess.call(["ifconfig" , interface , "down"])
     subprocess.call(["ifconfig" , interface , "hw" , "ether" , new_mac])
     subprocess.call(["ifconfig" , interface , "up"])
 
 def get_current_mac(interface):
+    
+    """Function to get the current mac address of the interface"""
+    
     ifconfig_result = str(subprocess.check_output(["ifconfig", options.interface]))
     mac_search_result  = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w" , ifconfig_result)
 

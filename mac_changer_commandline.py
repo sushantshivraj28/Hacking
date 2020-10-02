@@ -49,6 +49,6 @@ change_mac(options.interface , options.new_mac)
 current_mac = get_current_mac(options.interface)
 
 if current_mac == options.new_mac:
-    print("MAC Address changed successfully...")
+    print("[+]MAC Address changed successfully...")
 else:
-    print("MAC address was not changed...")
+    print("[-]Error MAC address was not changed...")
